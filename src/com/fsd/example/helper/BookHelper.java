@@ -7,8 +7,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BookHelper {
+
+    Comparator<Book> byTitle = Comparator.comparing(Book::getTitle);
+    Comparator<Book> byPublishDate = Comparator.comparing(Book::getPublishDate);
+
 
     public static void searchByBook() throws Exception {
         int count  = BookDao.getAllBooks().size();
@@ -103,5 +108,15 @@ public class BookHelper {
 
     public void createBookTableIfNotExists() throws Exception {
         BookDao.createBookTable();
+    }
+
+    public void sortBookByPublishDate() throws Exception {
+        List<Book> sortedBooksList = BookDao.getAllBooks().stream().sorted(byPublishDate).collect(Collectors.toList());
+        System.out.println("Sorted By Published Books :\n"+sortedBooksList);
+    }
+
+    public void sortBookByTitle() throws Exception {
+        List<Book> sortedBooksList = BookDao.getAllBooks().stream().sorted(byTitle).collect(Collectors.toList());
+        System.out.println("Sorted By Title Books :\n"+sortedBooksList);
     }
 }

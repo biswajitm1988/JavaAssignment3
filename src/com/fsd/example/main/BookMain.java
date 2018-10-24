@@ -32,7 +32,9 @@ public class BookMain {
                         + "\n4. Delete a book"
                         + "\n5. Search for a book"
                         + "\n6. Search for a subject"
-                        + "\n7. Exit"
+                        + "\n7. Sort Book By Title"
+                        + "\n8. Sort Books by publish Date"
+                        + "\n9. Exit"
                         + "\n\nPlease enter your selection and then press enter : ");
 
                 menuChoice = input.nextInt();
@@ -43,7 +45,7 @@ public class BookMain {
                         pause = new Scanner(System.in).nextLine();
                         break;
                     case 2:
-                        BookHelper.addBook();
+                        bookHelper.addBook();
                         System.out.println("Press enter to continue");
                         pause = new Scanner(System.in).nextLine();
                         break;
@@ -67,10 +69,20 @@ public class BookMain {
                         System.out.println("Press enter to continue");
                         pause = new Scanner(System.in).nextLine();
                         break;
+                    case 7:
+                        bookHelper.sortBookByTitle();
+                        System.out.println("Press enter to continue");
+                        pause = new Scanner(System.in).nextLine();
+                        break;
+                    case 8:
+                        bookHelper.sortBookByPublishDate();;
+                        System.out.println("Press enter to continue");
+                        pause = new Scanner(System.in).nextLine();
+                        break;
                     default:
                         break;
                 }
-            } while (menuChoice != 7);
+            } while (menuChoice != 9);
         } catch (Exception e) {
             System.out.println("\nInvalid input " + e.getMessage());
             main(args);

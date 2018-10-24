@@ -3,7 +3,7 @@ package com.fsd.example.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Book implements Comparable, Serializable {
+public class Book implements Comparable<Book>, Serializable {
     private static final long serialVersionUID =1l;
     private Long bookId;
     private String title;
@@ -64,7 +64,7 @@ public class Book implements Comparable, Serializable {
     }
 
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(Book o) {
         return this.bookId.compareTo(((Book) o).getBookId());
     }
 
